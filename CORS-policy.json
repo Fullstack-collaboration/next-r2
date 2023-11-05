@@ -1,0 +1,22 @@
+[
+  {
+    "AllowedOrigins": ["*"],
+    "AllowedMethods": ["GET", "PUT", "POST"],
+    "AllowedHeaders": [
+      "Content-Type",
+      "Content-Language",
+      "Content-Encoding",
+      "Content-Disposition",
+      "X-Amz-Acl"
+    ],
+    "ExposeHeaders": [
+      "Content-Type",
+      "Access-Control-Allow-Origin",
+      "ETag",
+      "Cache-Control",
+      "Content-Disposition",
+      "Content-Encoding",
+      "Expires"
+    ]
+  }
+]

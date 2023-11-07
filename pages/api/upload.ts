@@ -30,7 +30,7 @@ export default async function handler(
   //   }),
   //   { expiresIn: 3600 }
   // );
-  console.log(req)
+  // console.log(req)
   await R2.send(
     new PutObjectCommand({
       Body: fileHash,

@@ -30,10 +30,10 @@ export default async function handler(
   //   }),
   //   { expiresIn: 3600 }
   // );
-  console.log(req.body)
+  console.log(req)
   await R2.send(
     new PutObjectCommand({
-      Body: fileHash ,
+      Body: fileHash,
       Bucket: R2_BUCKET_NAME,
       Key: `${process.env.R2_FOLDER_NAME}/${filename}`,
       ContentType: contentType as string

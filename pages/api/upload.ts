@@ -20,19 +20,29 @@ export default async function handler(
 ) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { filename, fileHash, contentType } = JSON.parse(req.body as string);
-  const signedUrl = await getSignedUrl(
-    R2,
+  // const signedUrl = await getSignedUrl(
+  //   R2,
+  //   new PutObjectCommand({
+  //     Bucket: R2_BUCKET_NAME,
+  //     // Key: `resources/${fileHash}/${filename}`,
+  //     Key: `${process.env.R2_FOLDER_NAME}/${filename}`, // `resources/${fileHash}/${filename}`,
+  //     ContentType: contentType as string,
+  //   }),
+  //   { expiresIn: 3600 }
+  // );
+  console.log(req.body)
+  await R2.send(
     new PutObjectCommand({
+      Body: fileHash ,
       Bucket: R2_BUCKET_NAME,
-      // Key: `resources/${fileHash}/${filename}`,
-      Key: `${process.env.R2_FOLDER_NAME}/${filename}`, // `resources/${fileHash}/${filename}`,
-      ContentType: contentType as string,
-    }),
-    { expiresIn: 3600 }
-  );
+      Key: `${process.env.R2_FOLDER_NAME}/${filename}`,
+      ContentType: contentType as string
+    })
+  )
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.json({
-    url: signedUrl,
+    // url: signedUrl,
+    url: "this will be the uploaded url",
     method: "PUT",
   });
   res.end();
